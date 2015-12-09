@@ -18,7 +18,7 @@ Default port is 8000:
 
 ## SnapShot
 
-![snapshot][snapshot/1.png]
+![snapshot](snapshot/1.png)
 
 ### Might be Useful
 
