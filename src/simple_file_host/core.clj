@@ -116,3 +116,10 @@ Choose file to upload<br>
 
 (def handler
   handle-request)
+
+(require '(ring.adapter jetty))
+
+(defn -main [& [port]]
+  (ring.adapter.jetty/run-jetty handler
+        {:port (if port (Integer/parseInt port) 
+                   8000)}))

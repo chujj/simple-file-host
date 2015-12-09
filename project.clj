@@ -8,7 +8,7 @@
                  [ring/ring-core "1.4.0"]  ; ring
                  [ring/ring-jetty-adapter "1.4.0"]
                  ]
-  :plugins [[lein-ring "0.8.11"]]
+  :plugins [[lein-ring "0.9.7"]]
   :ring {:handler simple-file-host.core/handler}
   :main ^:skip-aot simple-file-host.core
   :target-path "target/%s"
