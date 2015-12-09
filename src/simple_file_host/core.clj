@@ -3,6 +3,7 @@
 
 (require '(clojure.java [io :as io]))
 (require '(me.raynes [fs :as fs]))
+(require '(ring.util [response :as resp] [request :as require]))
 
 (defn relative-from-current-path
   [abspath]
@@ -47,24 +48,30 @@
 </body>
 </html>" path path))
 
-(defn file-path-founded
-  [path]
-  (format "<html>
-<title>SimpleFileHost %s Founded</title>
-<body>
-%s Founded
-</body>
-</html>" path path))
+(defn uri-2-relative-path
+  "remove first '/' in uri-path"
+  [uri-query-path]
+  (if (fs/absolute? uri-query-path)
+    (subs uri-query-path 1)
+    uri-query-path))
 
 (defn get-path-as-html
   "get-content of given path. Current Working Dir as root('/') "
   [query-path]
   (let [local-path (str fs/*cwd* query-path)]
     (if (fs/exists? local-path)
-      (   ;exist
-       if (fs/directory? local-path)
+                                        ;exist
+      (if (fs/directory? local-path)
         (build-dir-html-content local-path) ; diretory
-        (file-path-founded query-path)  ; file
-       )
-      ; not exist
+        (resp/file-response (uri-2-relative-path query-path))
+        )
+                                        ; not exist
       (path-not-found query-path))))
+
+
+(defn handler [request]
+  (let [uri (get request :uri "/")
+        resp (get-path-as-html uri)]
+    (if (resp/response? resp)
+      resp
+      (resp/response resp))))
