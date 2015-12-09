@@ -4,6 +4,9 @@
 (require '(clojure.java [io :as io]))
 (require '(me.raynes [fs :as fs]))
 (require '(ring.util [response :as resp] [request :as require]))
+(require '(ring.middleware [content-type :as content-type]))
+(require '(ring.middleware multipart-params))
+
 
 (defn relative-from-current-path
   [abspath]
@@ -31,6 +34,12 @@
   (format "<html>
               <title>%s</title>
                  <body>\n
+Choose file to upload<br>
+<form ENCTYPE=\"multipart/form-data\" method=\"post\">
+       <input name=\"file\" type=\"file\">
+        <input type=\"submit\" value=\"upload\"/>
+</form>
+<br><br>
                    Content of %s:<br>\n
                    %s\n
                  </body>
@@ -59,19 +68,51 @@
   "get-content of given path. Current Working Dir as root('/') "
   [query-path]
   (let [local-path (str fs/*cwd* query-path)]
-    (if (fs/exists? local-path)
-                                        ;exist
+    (if (fs/exists? local-path)         ;exist
       (if (fs/directory? local-path)
         (build-dir-html-content local-path) ; diretory
-        (resp/file-response (uri-2-relative-path query-path))
+        (resp/file-response (uri-2-relative-path query-path)) ;file
         )
-                                        ; not exist
       (path-not-found query-path))))
 
+(defn dump-request
+  [request]
+  (resp/response (reduce str request)))
 
-(defn handler [request]
+(defn get-uri-content
+  [request]
   (let [uri (get request :uri "/")
         resp (get-path-as-html uri)]
     (if (resp/response? resp)
       resp
       (resp/response resp))))
+
+
+
+(defn post-file-under-uri-as-directory
+  [request]
+  (let [files (get-in request [:multipart-params "file"])
+        file-name (get files :filename)
+        file-size (get files :size)
+        tmpfile (get files :tempfile)
+        newfile (io/file fs/*cwd* (uri-2-relative-path (get request :uri "/")) file-name)
+        dump-response  (str request)]
+    (if (and (empty? file-name) (= 0 file-size))
+      (resp/response "Select a file first")
+                                        ;copy from tmpfile to destfile
+      (let [copy-retval (fs/copy tmpfile newfile)]
+        (if copy-retval
+          (resp/response (format "Upload %s Success!" file-name))
+          (resp/response "Something Wrong!"))))))
+
+(defn handle-request
+  [request]
+  (if nil
+    (dump-request)
+    (let [post? (= :post (get request :request-method :get))]
+      (if post?
+        ((ring.middleware.multipart-params/wrap-multipart-params post-file-under-uri-as-directory) request)
+        (get-uri-content request)))))
+
+(def handler
+  handle-request)
