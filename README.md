@@ -1,36 +1,26 @@
 # simple-file-host
 
-FIXME: description
+Just like *python -m SimpleHTTPServer*, but add a file upload button.
+
+Upload a file which name is already exist will overrided.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+After clone, run follow build runnable jar:
+
+    $ lein uberjar
 
 ## Usage
 
-FIXME: explanation
+Default port is 8000:
 
-    $ java -jar simple-file-host-0.1.0-standalone.jar [args]
+    $ java -jar simple-file-host-0.1.0-standalone.jar "8001"
 
-## Options
+## SnapShot
 
-FIXME: listing of options this app accepts.
+![snapshot][snapshot/1.png]
 
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
 ### Might be Useful
 
-## License
+https://gist.github.com/UniIsland/3346170
 
-Copyright © 2015 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
