@@ -1,0 +1,16 @@
+{
+  "name": "nas_engine",
+  "version": "1.0.3",
+  "description": "engine for nas",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "luming.zhu",
+  "license": "husor",
+    "keywords": [
+        "nas",
+        "engine"
+    ],
+    "readme":"just readme"
+}
