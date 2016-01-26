@@ -2,18 +2,20 @@
   "name": "nas_engine",
   "version": "1.0.3",
   "description": "engine for nas",
-  "main": "lib",
+  "main": "pages/index.top.ios.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "(cd assets ; python -m SimpleHTTPServer)",
+    "start": "node_modules/react-native/packager/packager.sh"
   },
-  "author": "luming.zhu",
-  "license": "husor",
-  "keywords": [
-    "nas",
-    "engine"
-  ],
-  "readme": "just readme",
+  "repository": {
+    "type": "git",
+    "url": "http://git.husor.com.cn/android/BeiBeiProject.git"
+  },
+  "author": "fed",
+  "license": "ISC",
   "dependencies": {
-    "underscore": "^1.8.3"
+    "react-native": "^0.17.0",
+    "react-native-swiper": "^1.4.3"
   }
 }
+
