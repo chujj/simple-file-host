@@ -43,6 +43,6 @@ var exec = require('child_process').exec,
         }
     })();
 //test for fun
-process.findKey('index-top-ios');
+//process.findKey('index-top-ios');
 module.exports = process;
 
