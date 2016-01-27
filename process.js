@@ -6,7 +6,7 @@ var exec = require('child_process').exec,
 
     var process = (function(){
         var procObj;
-        function findKey(key){
+        function bundleFromKey(key){
             for(var pkey in placekey ){
                 if(key === pkey){
                     procObj = placekey[key];
@@ -39,10 +39,10 @@ var exec = require('child_process').exec,
         return {
             createBundle : createBundle,
             uploadBundle : uploadBundle,
-            findKey : findKey
+            bundleFromKey : bundleFromKey
         }
     })();
 //test for fun
-//process.findKey('index-top-ios');
+//process.bundleFromKey('index-top-ios');
 module.exports = process;
 

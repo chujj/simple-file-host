@@ -31,4 +31,4 @@ npm start, 在app内输入192.168.XXX.XXX:8081,入口都是index.js无法更改�
 
 ## 可调用的接口
 
-可调用process.js里exports的方法来完成自动打包，掉用findKey可从placekey.js配置文件读key打包，也可直接调用createBundle方法传参打包（不建议使用）。
+可调用process.js里exports的方法来完成自动打包，调用bundleFromKey可从placekey.js配置文件读key打包，也可直接调用createBundle方法传参打包（不建议使用）。
