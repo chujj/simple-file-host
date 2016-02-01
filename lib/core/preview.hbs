@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>预览页</title>
+    <link href="http://b0.hucdn.com/lib/nas_base.css" rel="stylesheet" media="all">
+    <script src="http://b0.hucdn.com/lib/react.js?v=1"></script>
+    <script src="http://b0.hucdn.com/lib/react-dom.js?v=1"></script>
+    <script src="http://b0.hucdn.com/lib/browser.min.js?v=1"></script>
+    <script src="http://b0.hucdn.com/lib/jquery.min.js?v=1"></script>
+    <script type="text/javascript">
+        ! function(a) {
+            function b() {
+                a.rem = f.getBoundingClientRect().width / 16, f.style.fontSize = a.rem + "px"
+            }
+            var c, d = a.navigator.appVersion.match(/iphone/gi) ? a.devicePixelRatio : 1,
+                    e = 1 / d,
+                    f = document.documentElement,
+                    g = document.createElement("meta");
+            if (a.dpr = d, a.addEventListener("resize", function() {
+                clearTimeout(c), c = setTimeout(b, 300)
+            }, !1), a.addEventListener("pageshow", function(a) {
+                a.persisted && (clearTimeout(c), c = setTimeout(b, 300))
+            }, !1), f.setAttribute("data-dpr", d), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + e + ", maximum-scale=" + e + ", minimum-scale=" + e + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g);
+            else {
+                var h = document.createElement("div");
+                h.appendChild(g), document.write(h.innerHTML)
+            }
+            b()
+        }(window);
+    </script>
+    <!--组件css-->
+    <style type="text/css">
+        /*布点一行一列*/
+        .anchorR1{
+            overflow: hidden;
+        }
+        .anchorR1 a{
+            float:left;
+            margin-right: .128rem;
+        }
+        .anchorR1 a:last-child{
+            float: right;
+            margin-right: 0;
+        }
+        .anchorR1 img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="top-wrap"></div>
+<script id="component-data" type="text/data">
+{{{componentsData}}}
+</script>
+<script type="text/babel">
+    //获取组件数据
+    var data=[];
+    try {
+        data = JSON.parse($('#component-data').html());
+    } catch (e) {
+    }
+    //定义组件
+    /*布点一行一列*/
+    var AnchorR1= React.createClass({
+        render : function(){
+            var data=this.props.data,containerStyle={backgroundColor:data.bgColor,paddingTop:data.paddingTop+'rem',paddingBottom:data.paddingBottom+'rem'};
+            return <div className="anchorR1" style={containerStyle} data-module data-aid={data.aid}>
+            {
+                $(data.anchors).map(function(index,em){
+                    var style={
+                        width:em.width+'rem',
+                        height:em.height+'rem'
+                    };
+                    return <a key={index} href={em.link} style={style}>{em.img && <img src={em.img}/>}</a>
+                }).get()
+            }
+            </div>
+        }
+    });
+    var moduleAry=[];
+    //组件映射表
+    var compmentMap={
+        AnchorR1:AnchorR1
+    };
+    //生成组件
+    $(data).each(function(index,em){
+        var compment=compmentMap[em.key];
+         compment && moduleAry.push(React.createElement(compment,{key:index,data:em.config}));
+    });
+    ReactDOM.render(<div>{moduleAry}</div>,document.getElementById('top-wrap'));
+</script>
+<!--组件js-->
+<script type="text/javascript">
+</script>
+</body>
+</html>

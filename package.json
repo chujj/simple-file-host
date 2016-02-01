@@ -2,19 +2,22 @@
   "name": "nas_engine",
   "version": "1.0.3",
   "description": "engine for nas",
-  "main": "pages/index.top.ios.js",
+  "main": "lib",
   "scripts": {
-    "test": "(cd assets ; python -m SimpleHTTPServer)",
-    "start": "node_modules/react-native/packager/packager.sh"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://git.husor.com.cn/android/BeiBeiProject.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "fed",
-  "license": "ISC",
+  "license": "husor",
+  "keywords": [
+    "nas",
+    "engine"
+  ],
+  "readme": "a engine for nas project",
   "dependencies": {
-    "react-native": "^0.17.0",
-    "react-native-swiper": "^1.4.3"
+    "handlebars": "^4.0.5",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.2.3"
   }
 }

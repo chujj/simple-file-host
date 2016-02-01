@@ -1,0 +1,33 @@
+'use strict';
+var React = require('react-native');
+{{{requireCom}}}
+var {
+Text,
+View,
+Image,
+Platform
+} = React;
+
+var {
+HBApp ,
+} = (Platform.OS == 'ios') ? require('nas_engine/src/rn/ios-interface.js') : require('nas_engine/src/rn/android-interface.js');
+
+
+const Index = React.createClass({
+render() {
+return (
+<View>
+    {{{compoLists}}}
+</View>
+);
+}
+});
+
+
+var styles = React.StyleSheet.create({
+
+});
+
+HBApp.Methods.screen.setHeight({{{viewHeight}}});
+
+React.AppRegistry.registerComponent('HBApp', () => Index);

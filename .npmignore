@@ -1,4 +1,5 @@
 .idea/
 .git/
 .gitignore
-test/
+lib/demo.html
+lib/jsx.js
