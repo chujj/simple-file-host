@@ -11,7 +11,10 @@ Platform
 var {
 HBApp ,
 } = (Platform.OS == 'ios') ? require('nas_engine/src/rn/ios-interface.js') : require('nas_engine/src/rn/android-interface.js');
-
+var Dimensions = require('Dimensions');
+var { width, height } = Dimensions.get('window'),
+phone = {"width":width,"height":height},
+retio = 750 / phone.width;
 
 const Index = React.createClass({
 render() {
@@ -28,6 +31,6 @@ var styles = React.StyleSheet.create({
 
 });
 
-HBApp.Methods.screen.setHeight({{{viewHeight}}});
+HBApp.Methods.screen.setHeight({{{viewHeight}}}/retio);
 
 React.AppRegistry.registerComponent('HBApp', () => Index);
