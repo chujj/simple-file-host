@@ -11,26 +11,6 @@ var {
 var HBNavigator = NativeModules.HBNavigator;
 
 
-
-//////////////////////////////// native ui ////////////////////////////////
-// var XLGCell = {
-//   name: 'XLGCell',
-//   propTypes: {
-//       rowData: React.PropTypes.object,
-//       animateXX: React.PropTypes.func
-//   },
-// };
-// XLGCell.propTypes = {
-//   rowData: React.PropTypes.object,
-//   animateXX: React.PropTypes.func
-
-// };
-
-// const HBXLGCell = require('./XLGCell_native');
-
-
-
-
 //////////////////////////////// export ////////////////////////////////
 
 var HBApp = {
