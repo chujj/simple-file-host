@@ -1,20 +1,25 @@
 'use strict';
 var React = require('react-native');
-{{{requireCom}}}
+
 var {
-Text,
 View,
-Image,
 Platform
 } = React;
 
 var {
 HBApp ,
 } = (Platform.OS == 'ios') ? require('nas_engine/src/rn/ios-interface.js') : require('nas_engine/src/rn/android-interface.js');
+
+global.HBApp = HBApp;
+
 var Dimensions = require('Dimensions');
 var { width, height } = Dimensions.get('window'),
 phone = {"width":width,"height":height},
 retio = 750 / phone.width;
+
+global.retio = retio;
+
+{{{requireCom}}}
 
 const Index = React.createClass({
 render() {
@@ -26,10 +31,6 @@ return (
 }
 });
 
-
-var styles = React.StyleSheet.create({
-
-});
 
 HBApp.Methods.screen.setHeight({{{viewHeight}}}/retio);
 
