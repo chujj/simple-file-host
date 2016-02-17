@@ -3,7 +3,8 @@ var React = require('react-native');
 
 var {
 View,
-Platform
+Platform,
+Dimensions
 } = React;
 
 var {
@@ -12,7 +13,6 @@ HBApp ,
 
 global.HBApp = HBApp;
 
-var Dimensions = require('Dimensions');
 var { width, height } = Dimensions.get('window'),
 phone = {"width":width,"height":height},
 retio = 750 / phone.width;
