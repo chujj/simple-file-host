@@ -1,6 +1,6 @@
 {
   "name": "nas_engine",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "engine for nas",
   "main": "lib",
   "scripts": {
