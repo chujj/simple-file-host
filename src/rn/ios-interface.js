@@ -9,26 +9,41 @@ var {
 
 //////////////////////////////// native method ////////////////////////////////
 var HBNavigator = NativeModules.HBNavigator;
+var HBAppNative = NativeModules.HBApp;
+
+
+//////////////////////////////// native ui ////////////////////////////////
+
+
+
+
 
 
 //////////////////////////////// export ////////////////////////////////
 
 var HBApp = {
+    Properties : {
+        phone : {
+            rnVersion : HBAppNative.rnVersion,
+            appVersion : HBAppNative.appVersion,
+        },
+    },
+
     Methods : {
         screen: {
             setHeight : function () {},//兼容android
         },
         navigator : {
-            openPageWithAdsInfo : HBNavigator.openPageWithAdsInfo,
+            openAdsPageWithUrl : HBNavigator.openAdsPageWithUrl,
         },
-        phone : {
-            rnVersion : '0.17.0',
-            appVersion: '3.8.0',
-        },
-        rn : {
-            reload: function () {}
+        analysis: {
+            husorEvent : HBAppNative.husorEvent, // key, map
+            umengEvent : HBAppNative.umengEvent, // key, value(or NULL)
         }
-    }
+    },
+    NativeUIComponents: {
+        DemoCell: null,
+    },
 }
 
 module.exports = { HBApp };

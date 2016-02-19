@@ -42,6 +42,12 @@ var AN_ImageView = requireNativeComponent('RCTAdView', theView, {nativeOnly: {
 //////////////////////////////// export ////////////////////////////////
 
 var HBApp = {
+    Properties : {
+    phone : {
+        rnVersion : RNInterface.rnVersion,
+        appVersion : RNInterface.appVersion,
+    },
+    },
     Methods : {
     android: {
         toast: RNInterface.setDimension,
@@ -51,15 +57,19 @@ var HBApp = {
         setHeight : RNInterface.setHeight,
     },
     navigator : {
-        openPageWithAdsInfo : RNInterface.openPageWithAdsInfo,
-    },
-    phone : {
-        rnVersion : '0.17.0',
-        appVersion: '3.8.0',
+        openAdsPageWithUrl: RNInterface.openPageWithUrl,
     },
     rn : {
         reload: function () {}
-    }
+    },
+    analysis: {
+        // key_string, value_map
+        husorEvent : function(key, valuemap) {
+        RNInterface.husorEvent(key, JSON.stringify(valuemap))
+        },
+        // key_string, value_string(or NULL)
+        umengEvent : RNInterface.umengEvent,
+    },
     },
     NativeUIComponents: {
     DemoCell: AN_ImageView,
