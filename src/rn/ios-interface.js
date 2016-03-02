@@ -18,7 +18,6 @@ var HBAppNative = NativeModules.HBApp;
 
 
 
-
 //////////////////////////////// export ////////////////////////////////
 
 var HBApp = {
@@ -34,7 +33,7 @@ var HBApp = {
             setHeight : function () {},//兼容android
         },
         navigator : {
-            openAdsPageWithUrl : HBNavigator.openAdsPageWithUrl,
+            openAdsPageWithUrl : HBNavigator.rn_openAdsPageWithUrl,
         },
         analysis: {
             husorEvent : HBAppNative.husorEvent, // key, map
@@ -42,7 +41,7 @@ var HBApp = {
         }
     },
     NativeUIComponents: {
-        DemoCell: null,
+        
     },
 }
 
